@@ -1,15 +1,15 @@
 {
-    "name": "golonka/bbcodeparser",
+    "name": "sonnam0904/sonnn-bbcode",
     "description": "Parse your BBCode easy with this library.",
     "keywords": ["bbcode", "parser", "laravel", "psr-1", "psr-2", "psr-4"],
-    "homepage": "http://github.com/golonka/bbcodeparser",
+    "homepage": "https://github.com/sonnam0904/sonnn-bbcode",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Joseph Landberg",
             "email": "joseph.landberg@gmail.com",
-            "homepage": "http://github.com/golonka/"
+            "homepage": "https://github.com/sonnam0904/"
         }
     ],
     "require": {
@@ -20,7 +20,7 @@
         "squizlabs/php_codesniffer": "~2"
     },
     "autoload": {
-        "psr-4": {"Golonka\\BBCode\\": "src/"}
+        "psr-4": {"Sonnam0904\\BBCode\\": "src/"}
     },
     "minimum-stability": "stable"
 }
