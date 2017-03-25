@@ -1,6 +1,6 @@
-<?php namespace Golonka\BBCode;
+<?php namespace Sonnn\BBCode;
 
-use \Golonka\BBCode\Traits\ArrayTrait;
+use \Sonnn\BBCode\Traits\ArrayTrait;
 
 class BBCodeParser
 {
