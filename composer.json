@@ -1,5 +1,5 @@
 {
-    "name": "Sonnn/BBCode",
+    "name": "sonnn/bbcode",
     "description": "parser bbcode",
     "minimum-stability": "dev",
     "require": {}
