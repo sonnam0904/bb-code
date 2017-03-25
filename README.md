@@ -1,4 +1,4 @@
-[![Latest Version](https://img.shields.io/github/release/sonnn/bbcode.svg?style=flat-square)](https://github.com/sonnn/bbcode/releases)
+[![Latest Version](https://img.shields.io/github/release/sonnn/bbcode.svg?style=flat-square)](https://github.com/sonnn/bbcode/v1.0)
 [![Total Downloads](https://img.shields.io/packagist/dt/sonnn/bbcode.svg?style=flat-square)](https://packagist.org/packages/sonnn/bbcode)
 
 The ``Sonnn\BBCode`` package will help you with parsing BBCode.
