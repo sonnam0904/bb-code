@@ -75,7 +75,7 @@ class BBCodeParser
         ],
         'image' => [
             'pattern' => '/\[IMG\](.*?)\[\/IMG\]/s',
-            'replace' => '<img src="$1">',
+            'replace' => '<div><img class="lazy-image" data-original="$1" src="/images/global/90.gif"></div>',
             'content' => '$1'
         ],
         'orderedlistnumerical' => [
