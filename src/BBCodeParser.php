@@ -65,12 +65,12 @@ class BBCodeParser
         ],
         'link' => [
             'pattern' => '/\[URL\](.*?)\[\/URL\]/s',
-            'replace' => '<a href=$1 rel="nofollow">$1</a>',
+            'replace' => '<a href="$1" rel="nofollow">$1</a>',
             'content' => '$1'
         ],
         'namedlink' => [
-            'pattern' => '/\[URL\=(.*?)\](.*?)\[\/URL\]/s',
-            'replace' => '<a href=$1 rel="nofollow">$2</a>',
+            'pattern' => '/\[URL\=\'(.*?)\'](.*?)\[\/URL\]/s',
+            'replace' => '<a href="$1" rel="nofollow">$2</a>',
             'content' => '$2'
         ],
         'image' => [
