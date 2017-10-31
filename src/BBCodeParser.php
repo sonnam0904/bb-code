@@ -40,17 +40,17 @@ class BBCodeParser
         ],
         'center' => [
             'pattern' => '/\[CENTER\](.*?)\[\/CENTER\]/s',
-            'replace' => '<div style="text-align:center;">$1</div>',
+            'replace' => '<span class="center-block" style="text-align:center;">$1</span>',
             'content' => '$1'
         ],
         'left' => [
             'pattern' => '/\[LEFT\](.*?)\[\/LEFT\]/s',
-            'replace' => '<div style="text-align:left;">$1</div>',
+            'replace' => '<span class="center-block" style="text-align:left;">$1</span>',
             'content' => '$1'
         ],
         'right' => [
             'pattern' => '/\[RIGHT\](.*?)\[\/RIGHT\]/s',
-            'replace' => '<div style="text-align:right;">$1</div>',
+            'replace' => '<span class="center-block" style="text-align:right;">$1</span>',
             'content' => '$1'
         ],
         'quote' => [
@@ -75,7 +75,7 @@ class BBCodeParser
         ],
         'image' => [
             'pattern' => '/\[IMG\](.*?)\[\/IMG\]/s',
-            'replace' => '<div><img class="lazy-image" data-original="$1" src="/images/global/blank.png"></div>',
+            'replace' => '<span class="center-block" style="text-align:center;"><img class="lazy-image" data-original="$1" src="/images/global/blank.png"></span>',
             'content' => '$1'
         ],
         'orderedlistnumerical' => [
