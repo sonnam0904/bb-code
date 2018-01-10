@@ -114,19 +114,19 @@ class BBCodeParser
             'content' => ''
         ],
         'sub' => [
-          'pattern' => '/\[SUB\](.*?)\[\/SUB\]/s',
-          'replace' => '<sub>$1</sub>',
-          'content' => '$1'
+            'pattern' => '/\[SUB\](.*?)\[\/SUB\]/s',
+            'replace' => '<sub>$1</sub>',
+            'content' => '$1'
         ],
         'sup' => [
-          'pattern' => '/\[SUP\](.*?)\[\/SUP\]/s',
-          'replace' => '<sup>$1</sup>',
-          'content' => '$1'
+            'pattern' => '/\[SUP\](.*?)\[\/SUP\]/s',
+            'replace' => '<sup>$1</sup>',
+            'content' => '$1'
         ],
         'small' => [
-          'pattern' => '/\[SMALL\](.*?)\[\/SMALL\]/s',
-          'replace' => '<small>$1</small>',
-          'content' => '$1'
+            'pattern' => '/\[SMALL\](.*?)\[\/SMALL\]/s',
+            'replace' => '<small>$1</small>',
+            'content' => '$1'
         ],
         'font' => [
             'pattern' => '/\[FONT\=(.*?)\](.*?)\[\/FONT\]/s',
@@ -152,7 +152,14 @@ class BBCodeParser
         foreach ($this->enabledParsers as $name => $parser) {
             $pattern = ($caseInsensitive) ? $parser['pattern'].'i' : $parser['pattern'];
 
-            $source = $this->searchAndReplace($pattern, $parser['replace'], $source);
+            if (in_array($name, ['link', 'namedlink']))
+            {
+                $source = $this->searchAndReplaceCallBack($parser['pattern'], $parser['replace'], $source);
+            }
+            else
+            {
+                $source = $this->searchAndReplace($parser['pattern'], $parser['replace'], $source);
+            }
         }
         return $source;
     }
@@ -178,11 +185,50 @@ class BBCodeParser
      */
     protected function searchAndReplace($pattern, $replace, $source)
     {
-        while (preg_match($pattern, $source)) {
-            $source = preg_replace($pattern, $replace, $source);
-        }
+        $source = preg_replace($pattern, $replace, $source);
 
         return $source;
+    }
+
+    protected function searchAndReplaceCallBack($pattern, $replace, $source)
+    {
+        $baseUrl = url('/');
+        $source = preg_replace_callback(
+            $pattern,
+            function ($find) use($replace, $baseUrl) {
+                if (isset($find[1]) && $find[1])
+                {
+                    if (isset($find[1]))
+                    {
+                        if (preg_match('#^https://muare.vn#i', $find[1])
+                            || preg_match('/https:\\/\\/[^.]+.muare.vn/', $find[1])
+                            || preg_match('/http:\\/\\/[^.]+.muare.vn/', $find[1]))
+                        {
+                            return "<a href=".$find[1]." rel=nofollow>".(isset($find[2])?$find[2]:$find[1])."</a>";
+                        }
+                        else
+                        {
+                            return "<a href=".$baseUrl."/url/".$this->encryptUrl($find[1])." rel=nofollow>".(isset($find[2])?$find[2]:$find[1])."</a>";
+                        }
+                    }
+                }
+
+                return '';
+            },
+            $source
+        );
+
+        return $source;
+    }
+
+    protected function encryptUrl($url)
+    {
+        return encrypt($url);
+    }
+
+    protected function decryptUrl($urlHash)
+    {
+        return decrypt($urlHash);
     }
 
     /**
